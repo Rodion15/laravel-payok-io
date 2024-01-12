@@ -20,7 +20,7 @@ If you don't use auto-discovery, add the ServiceProvider to the providers array 
 Rodion15\PayokIo\PayokIoServiceProvider::class,
 ```
 
-Add the `FreeKassa` facade to your facades array:
+Add the `PayokIo` facade to your facades array:
 
 ```php
 'PayokIo' => Rodion15\PayokIo\Facades\PayokIo::class,
