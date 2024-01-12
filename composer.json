@@ -2,7 +2,6 @@
     "name": "rodion15/laravel-payok-io",
     "description": "payok.io payments for Laravel",
     "license": "MIT",
-    "minimum-stability": "stable",
     "authors": [
         {
             "name": "rodion15",
