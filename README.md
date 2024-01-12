@@ -23,12 +23,12 @@ Rodion15\PayokIo\PayokIoServiceProvider::class,
 Add the `FreeKassa` facade to your facades array:
 
 ```php
-'PayokIo' => Weishaypt\PayokIo\Facades\PayokIo::class,
+'PayokIo' => Rodion15\PayokIo\Facades\PayokIo::class,
 ```
 
 Copy the package config to your local config with the publish command:
 ``` bash
-php artisan vendor:publish --provider="Weishaypt\PayokIo\EnotIoServiceProvider"
+php artisan vendor:publish --provider="Rodion15\PayokIo\EnotIoServiceProvider"
 ```
 
 ## Configuration
@@ -180,7 +180,7 @@ If you discover any security related issues, please send me an email at ya@sanek
 
 ## Credits
 
-- [Weishaypt](https://github.com/Weishaypt)
+- [Rodion15](https://github.com/Rodion15)
 - [All Contributors](../../contributors)
 
 ## License
