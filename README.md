@@ -11,13 +11,13 @@ Accept payments via PayokIo ([payok.io](https://payok.io/)) using this Laravel f
 Require this package with composer.
 
 ``` bash
-composer require weishaypt/laravel-enot-io
+composer require rodion15/laravel-payok-io
 ```
 
 If you don't use auto-discovery, add the ServiceProvider to the providers array in `config/app.php`
 
 ```php
-Weishaypt\PayokIo\EnotIoServiceProvider::class,
+Rodion15\PayokIo\PayokIoServiceProvider::class,
 ```
 
 Add the `FreeKassa` facade to your facades array:
