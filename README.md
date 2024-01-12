@@ -28,7 +28,7 @@ Add the `PayokIo` facade to your facades array:
 
 Copy the package config to your local config with the publish command:
 ``` bash
-php artisan vendor:publish --provider="Rodion15\PayokIo\EnotIoServiceProvider"
+php artisan vendor:publish --provider="Rodion15\PayokIo\PayokIoServiceProvider"
 ```
 
 ## Configuration
