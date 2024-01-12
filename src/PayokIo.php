@@ -123,15 +123,15 @@ class PayokIo
     }
 
     /**
-     * @param $project_id
-     * @param $amount
+     * @param $secret
      * @param $desc
      * @param $currency
-     * @param $secret
+     * @param $project_id
      * @param $order_id
+     * @param $amount
      * @return string
      */
-    public function getSignature($project_id, $amount, $desc, $currency, $secret, $order_id)
+    public function getSignature($secret, $desc, $currency, $project_id, $order_id, $amount)
     {
         $array = array ($secret, $desc, $currency, $project_id, $order_id, $amount);
         return md5 ( implode ( '|', $array ) );
