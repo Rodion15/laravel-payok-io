@@ -186,5 +186,3 @@ If you discover any security related issues, please send me an email at ya@sanek
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-# laravel-payok-io
-# laravel-payok-io
