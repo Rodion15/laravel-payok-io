@@ -1,0 +1,35 @@
+{
+    "name": "rodion15/laravel-payok-io",
+    "description": "payok.io payments for Laravel",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "rodion15",
+            "email": "ya@rodion15.ru"
+        }
+    ],
+    "require": {
+        "php": ">=8.1",
+        "laravel/framework": "10.*",
+        "guzzlehttp/guzzle": "7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rodion15\\PayokIo\\Facades\\": "src/Facades",
+            "Rodion15\\PayokIo\\": "src"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Rodion15\\PayokIo\\PayokIoServiceProvider"
+            ],
+            "aliases": {
+                "PayokIo": "Rodion15\\PayokIo\\Facades\\PayokIo"
+            }
+        }
+    }
+}
