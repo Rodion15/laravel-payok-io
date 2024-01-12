@@ -14,12 +14,12 @@ trait ValidateTrait
     public function validate(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'merchant' => 'required',
+            'desc' => 'required',
+            'currency' => 'required',
+            'shop' => 'required',
+            'payment_id' => 'required',
             'amount' => 'required',
-            'intid' => 'required',
-            'merchant_id' => 'required',
             'sign' => 'required',
-            'sign_2' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -35,9 +35,9 @@ trait ValidateTrait
      */
     public function validateSignature(Request $request)
     {
-        $sign = $this->getSignature(config('payokio.project_id'), $request->input('amount'), config('payokio.secret_key'), $request->input('merchant_id'));
+        $sign = $this->getSignature(config('payokio.secret_key'), $request->input('desc'), $request->input('currency'), config('payokio.project_id'), $request->input('payment_id'), $request->input('amount'));
 
-        if ($request->input('sign_2') != $sign) {
+        if ($request->input('sign') != $sign) {
             return false;
         }
 
@@ -51,6 +51,6 @@ trait ValidateTrait
     public function validateOrderFromHandle(Request $request)
     {
         return $this->validate($request)
-                    && $this->validateSignature($request);
+            && $this->validateSignature($request);
     }
 }
