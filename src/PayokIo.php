@@ -43,32 +43,32 @@ class PayokIo
         // add parameters to payment query
         if (! empty($user_parameters)) {
             foreach ($user_parameters as $parameter => $value) {
-                $query['cf'][$parameter] = $value;
+                $query['custom'][$parameter] = $value;
             }
         }
 
         // Project id (merchat id)
-        $query['m'] = config('payokio.project_id');
+        $query['shop'] = config('payokio.project_id');
 
         // Amount of payment
-        $query['oa'] = $amount;
+        $query['amount'] = $amount;
 
         // Order id
-        $query['o'] = $order_id;
+        $query['payment'] = $order_id;
 
         // Payment description (optional)
         if (! is_null($desc)) {
-            $query['c'] = $desc;
+            $query['desc'] = $desc;
         }
 
         // Payment Method (optional)
         if (! is_null($payment_method)) {
-            $query['p'] = $payment_method;
+            $query['method'] = $payment_method;
         }
 
         // Payment currency
         if (! is_null(config('payokio.currency'))) {
-            $query['cr'] = config('payokio.currency');
+            $query['currency'] = config('payokio.currency');
         }
 
         // Payment success_url
@@ -81,10 +81,13 @@ class PayokIo
             $query['fail_url'] = config('payokio.fail_url');
         }
 
-        $query['s'] = $this->getFormSignature(
+        $query['sign'] = $this->getFormSignature(
             config('payokio.project_id'),
             $amount,
-            config('payokio.secret_key'), $order_id
+            $desc,
+            config('payokio.currency'),
+            config('payokio.secret_key'),
+            $order_id
         );
 
         // Merge url ang query and return
@@ -107,29 +110,31 @@ class PayokIo
     /**
      * @param $project_id
      * @param $amount
+     * @param $desc
+     * @param $currency
      * @param $secret
      * @param $order_id
      * @return string
      */
-    public function getFormSignature($project_id, $amount, $secret, $order_id)
+    public function getFormSignature($project_id, $amount, $desc, $currency, $secret, $order_id)
     {
-        $hashStr = $project_id.':'.$amount.':'.$secret.':'.$order_id;
-
-        return md5($hashStr);
+        $array = array ($amount, $order_id, $project_id, $currency, $desc, $secret);
+        return md5 ( implode ( '|', $array ) );
     }
 
     /**
      * @param $project_id
      * @param $amount
+     * @param $desc
+     * @param $currency
      * @param $secret
      * @param $order_id
      * @return string
      */
-    public function getSignature($project_id, $amount, $secret, $order_id)
+    public function getSignature($project_id, $amount, $desc, $currency, $secret, $order_id)
     {
-        $hashStr = $project_id.':'.$amount.':'.$secret.':'.$order_id;
-
-        return md5($hashStr);
+        $array = array ($secret, $desc, $currency, $project_id, $order_id, $amount);
+        return md5 ( implode ( '|', $array ) );
     }
 
     /**
